@@ -24,6 +24,22 @@ class LabConfig:
     model: ProviderConfig
     judge_model: ProviderConfig
 
+    model = ProviderConfig(
+        provider="openai",
+        model_name="gpt-4o",
+        temperature=0.0,
+        api_key=None,
+        base_url=None
+    )
+
+    judge_model = ProviderConfig(
+        provider="openai",
+        model_name="gpt-4o",
+        temperature=0.0,
+        api_key=None,
+        base_url=None
+    )
+
 
 def load_config(base_dir: Path | None = None) -> LabConfig:
     """Student TODO: load environment variables and return a LabConfig.
@@ -49,4 +65,24 @@ def load_config(base_dir: Path | None = None) -> LabConfig:
     # TODO: create `root / "state"`.
     # TODO: choose sensible defaults for compact memory.
 
-    raise NotImplementedError("Students should implement load_config().")
+    return LabConfig(
+        base_dir=root,
+        data_dir=root / "data",
+        state_dir=root / "state",
+        compact_threshold_tokens=1000,
+        compact_keep_messages=10,
+        model=ProviderConfig(
+            provider="openai",
+            model_name="gpt-4o",
+            temperature=0.0,
+            api_key=None,
+            base_url=None
+        ),
+        judge_model=ProviderConfig(
+            provider="openai",
+            model_name="gpt-4o",
+            temperature=0.0,
+            api_key=None,
+            base_url=None
+        )
+    )
